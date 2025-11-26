@@ -3,19 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Invitación de Boda - Abulina</title>
+  <title>Invitación Boda Civil - Abulina</title>
 
-  <!-- Fuente bonita (opcional) -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet" />
+  <!-- Fuentes opcionales -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet" />
 
   <style>
     :root {
-      --color-principal: #c79bff;
-      --color-acento: #ffd6e8;
-      --color-fondo: #fff9f5;
-      --color-texto: #2b2b2b;
-      --radius-xl: 22px;
-      --shadow-suave: 0 12px 32px rgba(0, 0, 0, 0.16);
+      --verde-oscuro: #4b6b53;
+      --verde-medio: #6f8c73;
+      --verde-claro: #a6bfa8;
+      --dorado-suave: #c2a869;
+      --fondo: #f9fbf7;
+      --texto: #415442;
     }
 
     * {
@@ -25,420 +25,170 @@
     body {
       margin: 0;
       min-height: 100vh;
-      font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-      background: radial-gradient(circle at top left, #ffe0f2 0, transparent 60%),
-                  radial-gradient(circle at bottom right, #e4d2ff 0, transparent 60%),
-                  var(--color-fondo);
-      color: var(--color-texto);
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 18px;
+      padding: 16px;
+      font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(198, 219, 201, 0.7), transparent 70%),
+        radial-gradient(circle at bottom right, rgba(223, 235, 214, 0.9), transparent 65%),
+        var(--fondo);
+      color: var(--texto);
     }
 
-    .contenedor {
+    .wrapper {
       max-width: 520px;
       width: 100%;
-      background: rgba(255, 255, 255, 0.9);
-      border-radius: var(--radius-xl);
-      box-shadow: var(--shadow-suave);
-      padding: 24px 22px 20px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .contenedor::before {
-      content: "";
-      position: absolute;
-      width: 220px;
-      height: 220px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(255, 255, 255, 0.9), transparent 70%);
-      top: -80px;
-      right: -60px;
-      opacity: 0.7;
-      pointer-events: none;
-    }
-
-    .encabezado {
       text-align: center;
-      margin-bottom: 16px;
+    }
+
+    .tarjeta-wrapper {
       position: relative;
-      z-index: 1;
+      width: 100%;
+      max-width: 480px;
+      margin: 0 auto;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 18px 45px rgba(37, 56, 43, 0.28);
     }
 
-    .etiqueta {
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 0.22em;
-      color: #777;
-      margin-bottom: 4px;
+    .tarjeta {
+      width: 100%;
+      aspect-ratio: 1860 / 2622; /* proporción real de tus imágenes */
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      position: relative;
+      display: block;
     }
 
-    .nombres {
-      font-family: "Playfair Display", serif;
-      font-size: 1.8rem;
-      margin: 0;
+    /* Estado pendiente (antes de confirmar) */
+    .tarjeta.pendiente {
+      background-image: url("invitacion-abulina-antes.png");
     }
 
-    .nombres span {
-      display: inline-block;
-      margin: 0 4px;
+    /* Estado confirmada */
+    .tarjeta.confirmada {
+      background-image: url("invitacion-abulina-confirmada.png");
     }
 
-    .texto-principal {
-      margin-top: 10px;
-      font-size: 0.98rem;
-      line-height: 1.7;
+    /* Zona clicable sobre el botón "ASISTIRÉ" de la imagen */
+    .zona-boton {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      /* Estos valores son aproximados para coincidir con el botón de tu imagen */
+      bottom: 14%;         /* ajusta si quieres moverlo más arriba/abajo */
+      width: 55%;          /* ancho de la zona de clic */
+      height: 9%;          /* alto de la zona de clic */
+      cursor: pointer;
+      background: transparent;
+      border: none;
+      padding: 0;
     }
 
-    .target-invitado {
+    .tarjeta.confirmada .zona-boton {
+      /* Una vez confirmada, desactivamos la zona clicable */
+      pointer-events: none;
+      cursor: default;
+    }
+
+    .info-invitado {
       margin-top: 14px;
-      padding: 10px 12px;
-      border-radius: 999px;
-      background: linear-gradient(90deg, rgba(199, 155, 255, 0.18), rgba(255, 214, 232, 0.28));
-      font-size: 0.88rem;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .target-invitado strong {
-      font-weight: 600;
-    }
-
-    .detalle-grid {
-      margin-top: 18px;
-      display: grid;
-      gap: 10px;
       font-size: 0.92rem;
-      position: relative;
-      z-index: 1;
+      color: var(--verde-oscuro);
     }
 
-    .fila-detalle {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      padding: 9px 11px;
-      border-radius: 14px;
-      background: rgba(255, 255, 255, 0.95);
-      border: 1px solid rgba(0, 0, 0, 0.04);
-    }
-
-    .fila-detalle span:first-child {
-      font-size: 1.1rem;
-      flex-shrink: 0;
-    }
-
-    .fila-detalle-contenido {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .etiqueta-detalle {
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: #888;
-    }
-
-    .valor-detalle {
-      font-size: 0.92rem;
-    }
-
-    .valor-detalle strong {
+    .info-invitado span {
       font-weight: 600;
     }
 
-    .accesos {
-      font-weight: 600;
+    .mensaje-estado {
+      margin-top: 8px;
+      font-size: 0.9rem;
+      min-height: 1.2em;
+    }
+
+    .mensaje-estado.ok {
+      color: var(--verde-oscuro);
+    }
+
+    .mensaje-estado.neutro {
+      color: var(--verde-medio);
     }
 
     .nota {
-      margin-top: 12px;
-      font-size: 0.8rem;
-      color: #777;
-    }
-
-    .acciones {
-      margin-top: 18px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      align-items: center;
-      position: relative;
-      z-index: 1;
-    }
-
-    .acciones-columna {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      flex: 1 1 220px;
-    }
-
-    .botones-asistencia {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-
-    .btn-primario,
-    .btn-secundario {
-      border-radius: 999px;
-      padding: 9px 16px;
-      font-size: 0.86rem;
-      font-weight: 500;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      cursor: pointer;
-      border: none;
-      transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease, background 0.15s ease;
-    }
-
-    .btn-primario {
-      background: linear-gradient(135deg, var(--color-principal), var(--color-acento));
-      color: #fff;
-      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
-    }
-
-    .btn-primario:hover {
-      transform: translateY(-1px);
-      filter: brightness(1.03);
-      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.22);
-    }
-
-    .btn-secundario {
-      background: #ffffff;
-      color: #555;
-      border: 1px solid #d6cbed;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-    }
-
-    .btn-secundario:hover {
-      background: #f7f2ff;
-      transform: translateY(-1px);
-    }
-
-    .btn-primario:disabled,
-    .btn-secundario:disabled {
-      opacity: 0.6;
-      cursor: default;
-      transform: none;
-      box-shadow: none;
-    }
-
-    .mensaje-copiado {
-      font-size: 0.8rem;
-      min-height: 1.2em;
-      color: #1b7c4c;
-    }
-
-    .mensaje-asistencia {
-      font-size: 0.82rem;
-      min-height: 1.2em;
-    }
-
-    .mensaje-asistencia.ok {
-      color: #1b7c4c;
-    }
-
-    .mensaje-asistencia.no {
-      color: #b24747;
-    }
-
-    .enlace-principal {
       margin-top: 10px;
       font-size: 0.78rem;
-      color: #777;
-    }
-
-    .enlace-principal a {
-      color: #9a6fd1;
-      text-decoration: none;
-      font-weight: 500;
-    }
-
-    .enlace-principal a:hover {
-      text-decoration: underline;
+      color: var(--verde-medio);
     }
 
     @media (max-width: 480px) {
-      .contenedor {
-        padding: 20px 16px 18px;
-      }
-
-      .nombres {
-        font-size: 1.6rem;
-      }
-
-      .fila-detalle {
-        align-items: flex-start;
+      .wrapper {
+        max-width: 100%;
       }
     }
   </style>
 </head>
 <body>
-  <main class="contenedor">
-    <header class="encabezado">
-      <div class="etiqueta">Invitación personal</div>
-      <h1 class="nombres">
-        Daniel <span>&amp;</span> Nicole
-      </h1>
-      <p class="texto-principal">
-        Te invitamos a nuestra boda civil de Daniel &amp; Nicole.  
-        Será un honor contar con tu presencia en este momento tan especial.
-      </p>
-
-      <div class="target-invitado">
-        🎟️ Invitación para <strong>Abulina</strong>
-      </div>
-    </header>
-
-    <section class="detalle-grid">
-      <div class="fila-detalle">
-        <span>📍</span>
-        <div class="fila-detalle-contenido">
-          <span class="etiqueta-detalle">Lugar</span>
-          <span class="valor-detalle">
-            Molino del puente, Cajas
-          </span>
-        </div>
-      </div>
-
-      <div class="fila-detalle">
-        <span>⏰</span>
-        <div class="fila-detalle-contenido">
-          <span class="etiqueta-detalle">Hora</span>
-          <span class="valor-detalle">
-            16:00 h
-          </span>
-        </div>
-      </div>
-
-      <div class="fila-detalle">
-        <span>👤</span>
-        <div class="fila-detalle-contenido">
-          <span class="etiqueta-detalle">Nombre de la persona invitada</span>
-          <span class="valor-detalle">
-            <strong>Abulina</strong>
-          </span>
-        </div>
-      </div>
-
-      <div class="fila-detalle">
-        <span>🔑</span>
-        <div class="fila-detalle-contenido">
-          <span class="etiqueta-detalle">Número de accesos</span>
-          <span class="valor-detalle accesos">
-            1 acceso
-          </span>
-        </div>
-      </div>
-    </section>
-
-    <p class="nota">
-      Esta invitación es personal e intransferible.  
-      Por favor, respeta el número de accesos asignado.
-    </p>
-
-    <div class="acciones">
-      <!-- Columna izquierda: confirmación de asistencia -->
-      <div class="acciones-columna">
-        <div class="botones-asistencia">
-          <button id="btnAsistire" class="btn-primario">
-            Asistiré <span>💜</span>
-          </button>
-          <button id="btnNoAsistire" class="btn-secundario">
-            No podré asistir <span>😔</span>
-          </button>
-        </div>
-        <div id="mensajeAsistencia" class="mensaje-asistencia"></div>
-      </div>
-
-      <!-- Columna derecha: copiar datos -->
-      <div class="acciones-columna">
-        <button id="btnCopiar" class="btn-secundario">
-          Copiar datos de la invitación <span>📋</span>
-        </button>
-        <div id="mensajeCopiado" class="mensaje-copiado"></div>
+  <main class="wrapper">
+    <div class="tarjeta-wrapper">
+      <!-- Tarjeta de invitación (imagen de fondo) -->
+      <div id="tarjeta" class="tarjeta pendiente">
+        <!-- Zona invisible que se superpone al botón "ASISTIRÉ" de la imagen -->
+        <button id="btnAsistire" class="zona-boton" aria-label="Confirmar asistencia"></button>
       </div>
     </div>
 
-    <!-- Opcional: enlace de regreso a la página principal de la boda -->
-    <p class="enlace-principal">
-      ¿Quieres ver la invitación general?  
-      <!-- Cambia "index.html" por la ruta real de tu página principal -->
-      <a href="index.html">Ir a la página principal de la boda</a>
-    </p>
+    <div class="info-invitado">
+      Invitación personal para <span>Abulina</span> · <span>1 acceso</span>
+    </div>
+
+    <div id="mensajeEstado" class="mensaje-estado neutro">
+      Pulsa en <strong>ASISTIRÉ</strong> para confirmar tu asistencia.
+    </div>
+
+    <div class="nota">
+      Esta invitación es personal e intransferible.  
+      Si necesitas modificar algo, por favor contáctanos directamente.
+    </div>
   </main>
 
   <script>
-    // Texto de la invitación para copiar
-    const datosInvitacion = `
-Te invitamos a nuestra boda civil de Daniel & Nicole.
+    const tarjeta = document.getElementById("tarjeta");
+    const btnAsistire = document.getElementById("btnAsistire");
+    const mensajeEstado = document.getElementById("mensajeEstado");
+    const CLAVE_ESTADO = "rsvp_abulina_daniel_nicole";
 
-Invitado: Abulina
-Número de accesos: 1
+    // Cargar estado guardado (para que al recargar la página siga confirmado)
+    function cargarEstado() {
+      const estado = localStorage.getItem(CLAVE_ESTADO);
+      if (estado === "confirmado") {
+        tarjeta.classList.remove("pendiente");
+        tarjeta.classList.add("confirmada");
+        mensajeEstado.textContent =
+          "¡Abulina, gracias por confirmar tu asistencia! Te esperamos el 10 de enero a las 16:00 h en Molino del puente, Cajas. 💚";
+        mensajeEstado.className = "mensaje-estado ok";
+      }
+    }
 
-Lugar: Molino del puente, Cajas
-Hora: 16:00 h
-`;
-
-    const btnCopiar = document.getElementById("btnCopiar");
-    const mensajeCopiado = document.getElementById("mensajeCopiado");
-
-    btnCopiar.addEventListener("click", async () => {
-      mensajeCopiado.textContent = "";
-
+    // Confirmar asistencia al hacer clic
+    btnAsistire.addEventListener("click", () => {
+      tarjeta.classList.remove("pendiente");
+      tarjeta.classList.add("confirmada");
+      mensajeEstado.textContent =
+        "¡Abulina, gracias por confirmar tu asistencia! Te esperamos el 10 de enero a las 16:00 h en Molino del puente, Cajas. 💚";
+      mensajeEstado.className = "mensaje-estado ok";
       try {
-        if (navigator.clipboard && navigator.clipboard.writeText) {
-          await navigator.clipboard.writeText(datosInvitacion.trim());
-        } else {
-          // Fallback para navegadores antiguos
-          const area = document.createElement("textarea");
-          area.value = datosInvitacion.trim();
-          area.setAttribute("readonly", "");
-          area.style.position = "absolute";
-          area.style.left = "-9999px";
-          document.body.appendChild(area);
-          area.select();
-          document.execCommand("copy");
-          document.body.removeChild(area);
-        }
-
-        mensajeCopiado.textContent = "¡Datos copiados! 💜";
-      } catch (error) {
-        console.error(error);
-        mensajeCopiado.textContent = "No se pudo copiar automáticamente, pero puedes seleccionar y copiar el texto.";
+        localStorage.setItem(CLAVE_ESTADO, "confirmado");
+      } catch (e) {
+        console.warn("No se pudo guardar el estado en localStorage", e);
       }
     });
 
-    // ----- Confirmar o declinar asistencia -----
-    const btnAsistire = document.getElementById("btnAsistire");
-    const btnNoAsistire = document.getElementById("btnNoAsistire");
-    const mensajeAsistencia = document.getElementById("mensajeAsistencia");
-
-    btnAsistire.addEventListener("click", () => {
-      mensajeAsistencia.textContent = "¡Gracias por confirmar tu asistencia! Te esperamos en la boda civil de Daniel & Nicole. 💍";
-      mensajeAsistencia.className = "mensaje-asistencia ok";
-
-      // Opcional: desactivar botones después de elegir
-      btnAsistire.disabled = true;
-      btnNoAsistire.disabled = true;
-    });
-
-    btnNoAsistire.addEventListener("click", () => {
-      mensajeAsistencia.textContent = "Gracias por avisar. Sentimos que no puedas acompañarnos ese día. 💌";
-      mensajeAsistencia.className = "mensaje-asistencia no";
-
-      // Opcional: desactivar botones después de elegir
-      btnAsistire.disabled = true;
-      btnNoAsistire.disabled = true;
-    });
+    // Ejecutar al cargar
+    cargarEstado();
   </script>
 </body>
 </html>
