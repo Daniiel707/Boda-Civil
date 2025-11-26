@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Invitación de boda · Daniel & Nicole</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Fuentes -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --verde-oscuro: #37493d;
+      --verde-medio: #607d68;
+      --verde-claro: #c3d7c0;
+      --dorado: #c9a86a;
+      --fondo: #f7f5f0;
+      --texto: #33352f;
+      --radius: 24px;
+      --shadow: 0 16px 40px rgba(0, 0, 0, 0.16);
+    }
+
+    * {
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(195, 215, 192, 0.6), transparent 60%),
+        radial-gradient(circle at bottom right, rgba(230, 223, 200, 0.9), transparent 70%),
+        var(--fondo);
+      color: var(--texto);
+    }
+
+    a {
+      color: inherit;
+    }
+
+    /* NAVBAR */
+    header {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 20;
+      background: rgba(247, 245, 240, 0.95);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.7);
+    }
+
+    .nav {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 10px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 0.86rem;
+    }
+
+    .nav-logo {
+      font-family: "Playfair Display", serif;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      font-size: 1rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 16px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      position: relative;
+      padding-bottom: 3px;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--verde-medio), var(--dorado));
+      transition: width 0.2s ease;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .btn-nav {
+      border: none;
+      border-radius: 999px;
+      padding: 8px 16px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+      background: linear-gradient(135deg, var(--verde-medio), var(--dorado));
+      color: #fff;
+      box-shadow: 0 10px 22px rgba(0, 0, 0, 0.18);
+    }
+
+    main {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 94px 18px 40px;
+    }
+
+    section {
+      margin-top: 60px;
+    }
+
+    .titulo-seccion {
+      font-family: "Playfair Display", serif;
+      font-size: 1.8rem;
+      text-align: center;
+      margin-bottom: 6px;
+    }
+
+    .subtitulo-seccion {
+      text-align: center;
+      font-size: 0.9rem;
+      color: #6e7c6a;
+      margin-bottom: 18px;
+    }
+
+    /* PORTADA */
+    .portada {
+      display: grid;
+      grid-template-columns: minmax(0, 3.5fr) minmax(0, 3fr);
+      gap: 26px;
+      align-items: center;
+      margin-top: 26px;
+    }
+
+    .portada-texto {
+      background: rgba(247, 245, 240, 0.98);
+      border-radius: var(--radius);
+      padding: 24px 22px 18px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .portada-texto::before {
+      content: "";
+      position: absolute;
+      width: 220px;
+      height: 220px;
+      right: -80px;
+      top: -80px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.9), transparent 70%);
+      opacity: 0.9;
+    }
+
+    .etiqueta {
+      font-size: 0.8rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #7f8c78;
+      margin-bottom: 6px;
+    }
+
+    .nombres {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(2.4rem, 4vw, 3rem);
+      margin: 0;
+    }
+
+    .portada-detalle {
+      font-size: 0.92rem;
+      margin-top: 6px;
+      color: #566356;
+    }
+
+    .portada-texto p {
+      margin-top: 12px;
+      font-size: 0.95rem;
+      line-height: 1.7;
+      position: relative;
+      z-index: 1;
+    }
+
+    .portada-info-extra {
+      margin-top: 14px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 16px;
+      font-size: 0.86rem;
+      color: #4c5a4b;
+      position: relative;
+      z-index: 1;
+    }
+
+    .portada-info-extra div {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .pills {
+      margin-top: 12px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      font-size: 0.78rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .pill {
+      padding: 5px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(96, 125, 104, 0.24);
+      background: rgba(96, 125, 104, 0.06);
+    }
+
+    .portada-acciones {
+      margin-top: 18px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .btn-primario {
+      border: none;
+      border-radius: 999px;
+      padding: 10px 18px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      background: linear-gradient(135deg, var(--verde-medio), var(--dorado));
+      color: #fff;
+      box-shadow: var(--shadow);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .portada-nota {
+      font-size: 0.82rem;
+      color: #6e7c6a;
+    }
+
+    .portada-imagen {
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      background: linear-gradient(145deg, #fdfcf8, #e0ebdd);
+      padding: 16px 16px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .portada-imagen img {
+      width: 100%;
+      max-height: 420px;
+      object-fit: cover;
+      border-radius: 18px;
+      background: #ddd;
+    }
+
+    .portada-imagen small {
+      font-size: 0.78rem;
+      color: #5a6a59;
+      text-align: center;
+    }
+
+    /* HISTORIA */
+    .historia-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1.1fr);
+      gap: 22px;
+      align-items: flex-start;
+    }
+
+    .historia-texto {
+      background: rgba(247, 245, 240, 0.98);
+      border-radius: var(--radius);
+      padding: 18px 18px 14px;
+      box-shadow: var(--shadow);
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    .historia-linea {
+      display: grid;
+      gap: 10px;
+      font-size: 0.86rem;
+    }
+
+    .historia-item {
+      background: #ffffff;
+      border-radius: 14px;
+      padding: 9px 11px;
+      border-left: 3px solid var(--verde-medio);
+    }
+
+    .historia-item strong {
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    /* DETALLES E ITINERARIO */
+    .grid-detalles {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.1fr);
+      gap: 22px;
+    }
+
+    .card {
+      background: rgba(247, 245, 240, 0.98);
+      border-radius: var(--radius);
+      padding: 18px 18px 16px;
+      box-shadow: var(--shadow);
+      font-size: 0.9rem;
+    }
+
+    .card h3 {
+      font-family: "Playfair Display", serif;
+      margin-top: 0;
+      margin-bottom: 6px;
+      font-size: 1.15rem;
+    }
+
+    .lista-detalles {
+      list-style: none;
+      margin: 10px 0 0;
+      padding: 0;
+    }
+
+    .lista-detalles li {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      margin-bottom: 7px;
+    }
+
+    .lista-detalles li span:first-child {
+      flex-shrink: 0;
+      font-size: 1.1rem;
+    }
+
+    .mapa-box {
+      margin-top: 10px;
+      padding: 12px;
+      border-radius: 16px;
+      background: #ffffff;
+      border: 1px dashed #b6c2b5;
+      font-size: 0.84rem;
+    }
+
+    .mapa-box a {
+      color: var(--verde-medio);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .mapa-box a:hover {
+      text-decoration: underline;
+    }
+
+    .itinerario {
+      display: grid;
+      gap: 10px;
+      margin-top: 6px;
+      font-size: 0.88rem;
+    }
+
+    .it-item {
+      background: #ffffff;
+      border-radius: 14px;
+      padding: 10px 12px;
+      cursor: pointer;
+      border: 1px solid rgba(0, 0, 0, 0.04);
+      transition: border 0.15s ease, background 0.15s ease;
+    }
+
+    .it-item:hover {
+      border-color: rgba(96, 125, 104, 0.5);
+      background: #fdfcf8;
+    }
+
+    .it-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .it-hora {
+      font-weight: 600;
+    }
+
+    .it-titulo {
+      margin-left: 4px;
+    }
+
+    .it-icono {
+      font-size: 1.1rem;
+      transition: transform 0.2s ease;
+    }
+
+    .it-body {
+      margin-top: 4px;
+      font-size: 0.8rem;
+      color: #5b6857;
+      display: none;
+    }
+
+    .it-item.abierto .it-body {
+      display: block;
+    }
+
+    .it-item.abierto .it-icono {
+      transform: rotate(90deg);
+    }
+
+    /* REGALOS */
+    .lista-regalos {
+      list-style: none;
+      margin: 10px 0 0;
+      padding: 0;
+      font-size: 0.9rem;
+    }
+
+    .lista-regalos li {
+      margin-bottom: 6px;
+    }
+
+    /* RSVP SIMPLE */
+    .rsvp-card {
+      max-width: 720px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .rsvp-botones {
+      margin-top: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .btn-secundario {
+      border-radius: 999px;
+      padding: 10px 18px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      background: #ffffff;
+      border: 1px solid rgba(96, 125, 104, 0.4);
+      color: #4a5a49;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+    }
+
+    .mensaje-rsvp {
+      margin-top: 14px;
+      min-height: 1.2em;
+      font-size: 0.9rem;
+      color: #2f6b3a;
+    }
+
+    /* FOOTER */
+    footer {
+      margin-top: 60px;
+      padding: 22px 18px 28px;
+      text-align: center;
+      font-size: 0.78rem;
+      color: #6b7664;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 840px) {
+      .nav-links {
+        display: none;
+      }
+
+      main {
+        padding-top: 82px;
+      }
+
+      .portada {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .historia-grid,
+      .grid-detalles {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- NAVBAR -->
+  <header>
+    <nav class="nav">
+      <div class="nav-logo">Daniel &amp; Nicole</div>
+      <div class="nav-links">
+        <a href="#inicio">Inicio</a>
+        <a href="#historia">Nosotros</a>
+        <a href="#detalles">Evento</a>
+        <a href="#regalos">Regalos</a>
+        <a href="#rsvp">Confirmar</a>
+      </div>
+      <button class="btn-nav" onclick="document.getElementById('rsvp').scrollIntoView({behavior:'smooth'})">
+        Confirmar asistencia
+      </button>
+    </nav>
+  </header>
+
+  <main>
+    <!-- PORTADA -->
+    <section id="inicio" class="portada">
+      <article class="portada-texto">
+        <div class="etiqueta">Invitación a nuestra boda civil</div>
+        <h1 class="nombres">Daniel &amp; Nicole</h1>
+
+        <div class="portada-detalle">Boda civil · 16:00 h · Molino del puente, Cajas</div>
+
+        <p>
+          Con mucho cariño queremos invitarte a celebrar con nosotros el inicio de esta nueva etapa.
+          Tu presencia hará este día aún más especial.
+        </p>
+
+        <div class="portada-info-extra">
+          <div>📍 <span>Molino del puente, Cajas</span></div>
+          <div>🕓 <span>16:00 h · Te sugerimos llegar 30 minutos antes</span></div>
+          <div>👗 <span>Dress code: formal elegante</span></div>
+        </div>
+
+        <div class="pills">
+          <div class="pill">Boda civil íntima</div>
+          <div class="pill">Evento solo adultos</div>
+        </div>
+
+        <div class="portada-acciones">
+          <button class="btn-primario" onclick="document.getElementById('rsvp').scrollIntoView({behavior:'smooth'})">
+            Confirmar asistencia 💌
+          </button>
+          <div class="portada-nota">
+            Desliza hacia abajo para ver toda la información del evento.
+          </div>
+        </div>
+      </article>
+
+      <aside class="portada-imagen">
+        <!-- Aquí pondrás tu imagen después -->
+        <img src="" alt="Imagen principal de la invitación (agrega tu imagen aquí)" />
+        <small>Reemplaza esta imagen cuando tengas el diseño final de tu invitación.</small>
+      </aside>
+    </section>
+
+    <!-- NUESTRA HISTORIA -->
+    <section id="historia">
+      <h2 class="titulo-seccion">Nuestra historia</h2>
+      <p class="subtitulo-seccion">
+        Dos caminos que se cruzaron, muchas risas, viajes, y ahora un “sí” para toda la vida.
+      </p>
+
+      <div class="historia-grid">
+        <article class="historia-texto">
+          A lo largo de estos años hemos compartido momentos que nos han hecho crecer, aprender
+          y amarnos cada día más.
+          <br /><br />
+          Este paso que estamos por dar es muy importante para nosotros y queremos celebrarlo
+          rodeados de las personas que más queremos.
+          <br /><br />
+          Gracias por ser parte de esta historia y por acompañarnos en este capítulo tan especial.
+        </article>
+
+        <div class="historia-linea">
+          <div class="historia-item">
+            <strong>Nos conocimos</strong>
+            Un encuentro que se convirtió en el inicio de todo.
+          </div>
+          <div class="historia-item">
+            <strong>Nos elegimos</strong>
+            Descubrimos que éramos el mejor equipo para la vida.
+          </div>
+          <div class="historia-item">
+            <strong>La propuesta</strong>
+            Con nervios, sonrisas y lágrimas felices, dijimos “sí”.
+          </div>
+          <div class="historia-item">
+            <strong>El gran día</strong>
+            Empezamos oficialmente esta nueva etapa, junto a ti.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DETALLES DEL EVENTO & ITINERARIO -->
+    <section id="detalles">
+      <h2 class="titulo-seccion">Detalles del evento</h2>
+      <p class="subtitulo-seccion">
+        Todo lo que necesitas saber para llegar, disfrutar y acompañarnos.
+      </p>
+
+      <div class="grid-detalles">
+        <article class="card">
+          <h3>Ceremonia &amp; celebración</h3>
+          <ul class="lista-detalles">
+            <li>
+              <span>⏰</span>
+              <span><strong>Hora:</strong> 16:00 h · Llegar 30 minutos antes.</span>
+            </li>
+            <li>
+              <span>📍</span>
+              <span><strong>Lugar:</strong> Molino del puente, Cajas.</span>
+            </li>
+            <li>
+              <span>👗</span>
+              <span><strong>Dress code:</strong> formal elegante (tonos neutros / tierra recomendados).</span>
+            </li>
+            <li>
+              <span>🚫</span>
+              <span><strong>Niños:</strong> será un evento solo adultos.</span>
+            </li>
+          </ul>
+
+          <div class="mapa-box">
+            <strong>Ubicación en mapa</strong><br />
+            <!-- Reemplaza # con tu enlace real de Google Maps -->
+            <a href="#" target="_blank" rel="noopener noreferrer">
+              Ver en Google Maps ➜
+            </a>
+            <br />
+            <small>Si necesitas ayuda con el transporte, puedes escribirnos.</small>
+          </div>
+        </article>
+
+        <article class="card">
+          <h3>Itinerario del día</h3>
+          <p style="font-size:0.86rem; margin-top:0;">
+            Toca cada horario para ver más detalles.
+          </p>
+
+          <div class="itinerario">
+            <div class="it-item">
+              <div class="it-header">
+                <div>
+                  <span class="it-hora">15:30</span>
+                  <span class="it-titulo"> · Llegada de invitados</span>
+                </div>
+                <span class="it-icono">▶</span>
+              </div>
+              <div class="it-body">
+                Recepción de invitados, tiempo para ubicarse y disfrutar del lugar.
+              </div>
+            </div>
+
+            <div class="it-item">
+              <div class="it-header">
+                <div>
+                  <span class="it-hora">16:00</span>
+                  <span class="it-titulo"> · Ceremonia civil</span>
+                </div>
+                <span class="it-icono">▶</span>
+              </div>
+              <div class="it-body">
+                Ceremonia, votos y firma para celebrar nuestro “sí”.
+              </div>
+            </div>
+
+            <div class="it-item">
+              <div class="it-header">
+                <div>
+                  <span class="it-hora">17:00</span>
+                  <span class="it-titulo"> · Brindis &amp; fotos</span>
+                </div>
+                <span class="it-icono">▶</span>
+              </div>
+              <div class="it-body">
+                Fotos con los invitados, brindis de honor y bocaditos.
+              </div>
+            </div>
+
+            <div class="it-item">
+              <div class="it-header">
+                <div>
+                  <span class="it-hora">18:00</span>
+                  <span class="it-titulo"> · Cena &amp; celebración</span>
+                </div>
+                <span class="it-icono">▶</span>
+              </div>
+              <div class="it-body">
+                Cena, música y momentos especiales para disfrutar juntos.
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- REGALOS -->
+    <section id="regalos">
+      <h2 class="titulo-seccion">Regalos</h2>
+      <p class="subtitulo-seccion">
+        Tu presencia es lo más importante. Si deseas hacernos un regalo, aquí algunas opciones.
+      </p>
+
+      <article class="card" style="max-width: 720px; margin: 0 auto;">
+        <ul class="lista-regalos">
+          <li>💌 <strong>Lluvia de sobres</strong> el día del evento.</li>
+          <li>🏦 <strong>Transferencia bancaria</strong> (podemos compartir los datos por mensaje).</li>
+          <li>🎁 <strong>Detalle especial</strong> a tu elección para nuestro hogar.</li>
+        </ul>
+        <p style="margin-top:12px; font-size:0.84rem; color:#5b6857;">
+          Lo que más valoramos es tu cariño y el tiempo que compartas con nosotros en ese día.
+        </p>
+      </article>
+    </section>
+
+    <!-- RSVP -->
+    <section id="rsvp">
+      <h2 class="titulo-seccion">Confirmar asistencia</h2>
+      <p class="subtitulo-seccion">
+        Ayúdanos confirmando si podrás acompañarnos en nuestra boda civil.
+      </p>
+
+      <article class="card rsvp-card">
+        <p style="margin:0;">
+          Elige una opción:
+        </p>
+
+        <div class="rsvp-botones">
+          <button class="btn-primario" id="btnAsistire">
+            Asistiré 💚
+          </button>
+          <button class="btn-secundario" id="btnNoPuedo">
+            No podré ir 😢
+          </button>
+        </div>
+
+        <div id="mensajeRSVP" class="mensaje-rsvp"></div>
+      </article>
+    </section>
+  </main>
+
+  <footer>
+    Con cariño, Daniel &amp; Nicole · ¡Gracias por ser parte de este momento! 💍
+  </footer>
+
+  <script>
+    // Acordeón del itinerario
+    document.querySelectorAll(".it-item").forEach((item) => {
+      item.addEventListener("click", () => {
+        item.classList.toggle("abierto");
+      });
+    });
+
+    // RSVP simple
+    const btnAsistire = document.getElementById("btnAsistire");
+    const btnNoPuedo = document.getElementById("btnNoPuedo");
+    const mensajeRSVP = document.getElementById("mensajeRSVP");
+
+    btnAsistire.addEventListener("click", () => {
+      mensajeRSVP.textContent =
+        "¡Gracias por confirmar tu asistencia! Te esperamos con mucha ilusión en la boda. 💚";
+    });
+
+    btnNoPuedo.addEventListener("click", () => {
+      mensajeRSVP.textContent =
+        "Gracias por avisarnos. Te tendremos presente en nuestros corazones. 💌";
+    });
+  </script>
+</body>
+</html>
