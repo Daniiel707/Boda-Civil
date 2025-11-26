@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Invitación de Boda - Abulina</title>
+
+  <!-- Fuente bonita (opcional) -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --color-principal: #c79bff;
+      --color-acento: #ffd6e8;
+      --color-fondo: #fff9f5;
+      --color-texto: #2b2b2b;
+      --radius-xl: 22px;
+      --shadow-suave: 0 12px 32px rgba(0, 0, 0, 0.16);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: radial-gradient(circle at top left, #ffe0f2 0, transparent 60%),
+                  radial-gradient(circle at bottom right, #e4d2ff 0, transparent 60%),
+                  var(--color-fondo);
+      color: var(--color-texto);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+    }
+
+    .contenedor {
+      max-width: 520px;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-suave);
+      padding: 24px 22px 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contenedor::before {
+      content: "";
+      position: absolute;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.9), transparent 70%);
+      top: -80px;
+      right: -60px;
+      opacity: 0.7;
+      pointer-events: none;
+    }
+
+    .encabezado {
+      text-align: center;
+      margin-bottom: 16px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .etiqueta {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      color: #777;
+      margin-bottom: 4px;
+    }
+
+    .nombres {
+      font-family: "Playfair Display", serif;
+      font-size: 1.8rem;
+      margin: 0;
+    }
+
+    .nombres span {
+      display: inline-block;
+      margin: 0 4px;
+    }
+
+    .texto-principal {
+      margin-top: 10px;
+      font-size: 0.98rem;
+      line-height: 1.7;
+    }
+
+    .target-invitado {
+      margin-top: 14px;
+      padding: 10px 12px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, rgba(199, 155, 255, 0.18), rgba(255, 214, 232, 0.28));
+      font-size: 0.88rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .target-invitado strong {
+      font-weight: 600;
+    }
+
+    .detalle-grid {
+      margin-top: 18px;
+      display: grid;
+      gap: 10px;
+      font-size: 0.92rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .fila-detalle {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 9px 11px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.95);
+      border: 1px solid rgba(0, 0, 0, 0.04);
+    }
+
+    .fila-detalle span:first-child {
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    .fila-detalle-contenido {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .etiqueta-detalle {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #888;
+    }
+
+    .valor-detalle {
+      font-size: 0.92rem;
+    }
+
+    .valor-detalle strong {
+      font-weight: 600;
+    }
+
+    .accesos {
+      font-weight: 600;
+    }
+
+    .nota {
+      margin-top: 12px;
+      font-size: 0.8rem;
+      color: #777;
+    }
+
+    .acciones {
+      margin-top: 18px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .btn-primario {
+      border: none;
+      border-radius: 999px;
+      padding: 9px 16px;
+      font-size: 0.86rem;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      background: linear-gradient(135deg, var(--color-principal), var(--color-acento));
+      color: #fff;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+      transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+    }
+
+    .btn-primario:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.03);
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.22);
+    }
+
+    .mensaje-copiado {
+      font-size: 0.8rem;
+      min-height: 1.2em;
+      color: #1b7c4c;
+    }
+
+    .enlace-principal {
+      font-size: 0.78rem;
+      color: #777;
+    }
+
+    .enlace-principal a {
+      color: #9a6fd1;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .enlace-principal a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 480px) {
+      .contenedor {
+        padding: 20px 16px 18px;
+      }
+
+      .nombres {
+        font-size: 1.6rem;
+      }
+
+      .fila-detalle {
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="contenedor">
+    <header class="encabezado">
+      <div class="etiqueta">Invitación personal</div>
+      <h1 class="nombres">
+        Daniel <span>&amp;</span> Nicole
+      </h1>
+      <p class="texto-principal">
+        Te invitamos a nuestra boda civil de Daniel &amp; Nicole.  
+        Será un honor contar con tu presencia en este momento tan especial.
+      </p>
+
+      <div class="target-invitado">
+        🎟️ Invitación para <strong>Abulina</strong>
+      </div>
+    </header>
+
+    <section class="detalle-grid">
+      <div class="fila-detalle">
+        <span>📍</span>
+        <div class="fila-detalle-contenido">
+          <span class="etiqueta-detalle">Lugar</span>
+          <span class="valor-detalle">
+            Molino del puente, Cajas
+          </span>
+        </div>
+      </div>
+
+      <div class="fila-detalle">
+        <span>⏰</span>
+        <div class="fila-detalle-contenido">
+          <span class="etiqueta-detalle">Hora</span>
+          <span class="valor-detalle">
+            16:00 h
+          </span>
+        </div>
+      </div>
+
+      <div class="fila-detalle">
+        <span>👤</span>
+        <div class="fila-detalle-contenido">
+          <span class="etiqueta-detalle">Nombre de la persona invitada</span>
+          <span class="valor-detalle">
+            <strong>Abulina</strong>
+          </span>
+        </div>
+      </div>
+
+      <div class="fila-detalle">
+        <span>🔑</span>
+        <div class="fila-detalle-contenido">
+          <span class="etiqueta-detalle">Número de accesos</span>
+          <span class="valor-detalle accesos">
+            1 acceso
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <p class="nota">
+      Esta invitación es personal e intransferible.  
+      Por favor, respeta el número de accesos asignado.
+    </p>
+
+    <div class="acciones">
+      <button id="btnCopiar" class="btn-primario">
+        Copiar datos de la invitación <span>📋</span>
+      </button>
+      <div id="mensajeCopiado" class="mensaje-copiado"></div>
+    </div>
+
+    <!-- Opcional: enlace de regreso a la página principal de la boda -->
+    <p class="enlace-principal">
+      ¿Quieres ver la invitación general?  
+      <!-- Cambia "index.html" por la ruta real de tu página principal -->
+      <a href="index.html">Ir a la página principal de la boda</a>
+    </p>
+  </main>
+
+  <script>
+    // Texto de la invitación para copiar
+    const datosInvitacion = `
+Te invitamos a nuestra boda civil de Daniel & Nicole.
+
+Invitado: Abulina
+Número de accesos: 1
+
+Lugar: Molino del puente, Cajas
+Hora: 16:00 h
+`;
+
+    const btnCopiar = document.getElementById("btnCopiar");
+    const mensajeCopiado = document.getElementById("mensajeCopiado");
+
+    btnCopiar.addEventListener("click", async () => {
+      mensajeCopiado.textContent = "";
+
+      try {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          await navigator.clipboard.writeText(datosInvitacion.trim());
+        } else {
+          // Fallback para navegadores antiguos
+          const area = document.createElement("textarea");
+          area.value = datosInvitacion.trim();
+          area.setAttribute("readonly", "");
+          area.style.position = "absolute";
+          area.style.left = "-9999px";
+          document.body.appendChild(area);
+          area.select();
+          document.execCommand("copy");
+          document.body.removeChild(area);
+        }
+
+        mensajeCopiado.textContent = "¡Datos copiados! 💜";
+      } catch (error) {
+        console.error(error);
+        mensajeCopiado.textContent = "No se pudo copiar automáticamente, pero puedes seleccionar y copiar el texto.";
+      }
+    });
+  </script>
+</body>
+</html>
