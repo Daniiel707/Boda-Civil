@@ -79,7 +79,7 @@
       left: 50%;
       transform: translateX(-50%);
       /* Estos valores son aproximados para coincidir con el botón de tu imagen */
-      bottom: 14%;         /* ajusta si quieres moverlo más arriba/abajo */
+      bottom: 20%;         /* ajusta si quieres moverlo más arriba/abajo */
       width: 55%;          /* ancho de la zona de clic */
       height: 9%;          /* alto de la zona de clic */
       cursor: pointer;
@@ -192,3 +192,8 @@
   </script>
 </body>
 </html>
+<button
+  onclick="localStorage.removeItem('rsvp_abulina_daniel_nicole'); location.reload();"
+  style="margin-top:20px; background:none; border:none; color:#4b6b53; font-size:0.85rem; cursor:pointer;">
+  Reiniciar invitación (solo administrador)
+</button>
