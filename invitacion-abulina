@@ -172,8 +172,21 @@
       z-index: 1;
     }
 
-    .btn-primario {
-      border: none;
+    .acciones-columna {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      flex: 1 1 220px;
+    }
+
+    .botones-asistencia {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .btn-primario,
+    .btn-secundario {
       border-radius: 999px;
       padding: 9px 16px;
       font-size: 0.86rem;
@@ -182,10 +195,14 @@
       align-items: center;
       gap: 8px;
       cursor: pointer;
+      border: none;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease, background 0.15s ease;
+    }
+
+    .btn-primario {
       background: linear-gradient(135deg, var(--color-principal), var(--color-acento));
       color: #fff;
       box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
-      transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
     }
 
     .btn-primario:hover {
@@ -194,13 +211,47 @@
       box-shadow: 0 14px 30px rgba(0, 0, 0, 0.22);
     }
 
+    .btn-secundario {
+      background: #ffffff;
+      color: #555;
+      border: 1px solid #d6cbed;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    }
+
+    .btn-secundario:hover {
+      background: #f7f2ff;
+      transform: translateY(-1px);
+    }
+
+    .btn-primario:disabled,
+    .btn-secundario:disabled {
+      opacity: 0.6;
+      cursor: default;
+      transform: none;
+      box-shadow: none;
+    }
+
     .mensaje-copiado {
       font-size: 0.8rem;
       min-height: 1.2em;
       color: #1b7c4c;
     }
 
+    .mensaje-asistencia {
+      font-size: 0.82rem;
+      min-height: 1.2em;
+    }
+
+    .mensaje-asistencia.ok {
+      color: #1b7c4c;
+    }
+
+    .mensaje-asistencia.no {
+      color: #b24747;
+    }
+
     .enlace-principal {
+      margin-top: 10px;
       font-size: 0.78rem;
       color: #777;
     }
@@ -295,10 +346,26 @@
     </p>
 
     <div class="acciones">
-      <button id="btnCopiar" class="btn-primario">
-        Copiar datos de la invitación <span>📋</span>
-      </button>
-      <div id="mensajeCopiado" class="mensaje-copiado"></div>
+      <!-- Columna izquierda: confirmación de asistencia -->
+      <div class="acciones-columna">
+        <div class="botones-asistencia">
+          <button id="btnAsistire" class="btn-primario">
+            Asistiré <span>💜</span>
+          </button>
+          <button id="btnNoAsistire" class="btn-secundario">
+            No podré asistir <span>😔</span>
+          </button>
+        </div>
+        <div id="mensajeAsistencia" class="mensaje-asistencia"></div>
+      </div>
+
+      <!-- Columna derecha: copiar datos -->
+      <div class="acciones-columna">
+        <button id="btnCopiar" class="btn-secundario">
+          Copiar datos de la invitación <span>📋</span>
+        </button>
+        <div id="mensajeCopiado" class="mensaje-copiado"></div>
+      </div>
     </div>
 
     <!-- Opcional: enlace de regreso a la página principal de la boda -->
@@ -348,6 +415,29 @@ Hora: 16:00 h
         console.error(error);
         mensajeCopiado.textContent = "No se pudo copiar automáticamente, pero puedes seleccionar y copiar el texto.";
       }
+    });
+
+    // ----- Confirmar o declinar asistencia -----
+    const btnAsistire = document.getElementById("btnAsistire");
+    const btnNoAsistire = document.getElementById("btnNoAsistire");
+    const mensajeAsistencia = document.getElementById("mensajeAsistencia");
+
+    btnAsistire.addEventListener("click", () => {
+      mensajeAsistencia.textContent = "¡Gracias por confirmar tu asistencia! Te esperamos en la boda civil de Daniel & Nicole. 💍";
+      mensajeAsistencia.className = "mensaje-asistencia ok";
+
+      // Opcional: desactivar botones después de elegir
+      btnAsistire.disabled = true;
+      btnNoAsistire.disabled = true;
+    });
+
+    btnNoAsistire.addEventListener("click", () => {
+      mensajeAsistencia.textContent = "Gracias por avisar. Sentimos que no puedas acompañarnos ese día. 💌";
+      mensajeAsistencia.className = "mensaje-asistencia no";
+
+      // Opcional: desactivar botones después de elegir
+      btnAsistire.disabled = true;
+      btnNoAsistire.disabled = true;
     });
   </script>
 </body>
